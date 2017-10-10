@@ -189,13 +189,15 @@ namespace Dynamo.Graph.Workspaces
             {
                 foreach (var model in models)
                 {
-                    if (model is NoteModel)
-                    {
-                        // Take a snapshot of the note before it goes away.
-                        undoRecorder.RecordDeletionForUndo(model);
-                        RemoveNote(model as NoteModel);
-                    }
-                    else if (model is AnnotationModel)
+                    // TODO: Determine what to do with notes here...
+                    //if (model is NoteModel)
+                    //{
+                    //    // Take a snapshot of the note before it goes away.
+                    //    undoRecorder.RecordDeletionForUndo(model);
+                    //    RemoveNote(model as NoteModel);
+                    //}
+                    //else 
+                    if (model is AnnotationModel)
                     {
                         undoRecorder.RecordDeletionForUndo(model);
                         RemoveAnnotation(model as AnnotationModel);
@@ -302,13 +304,15 @@ namespace Dynamo.Graph.Workspaces
             //Identified this when redo operation is performed on groups
             ModelBase model = GetModelForElement(modelData);
 
-            if (model is NoteModel)
-            {
-                var note = model as NoteModel;
-                RemoveNote(note);
-                note.Dispose();
-            }
-            else if (model is AnnotationModel)
+            // TODO: Determine what to do with notes here...
+            //if (model is NoteModel)
+            //{
+            //    var note = model as NoteModel;
+            //    RemoveNote(note);
+            //    note.Dispose();
+            //}
+            //else 
+            if (model is AnnotationModel)
             {
                 RemoveGroup(model);
             }

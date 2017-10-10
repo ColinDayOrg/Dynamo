@@ -313,7 +313,7 @@ namespace Dynamo.Graph.Workspaces
 
             //Build an empty notes. Notes are defined in the view block. If the file has View block
             //serialize view block first and build the notes.
-            var notes = new List<NoteModel>();
+            var notes = new List<AnnotationModel>();
 
             // Trace Data
             Dictionary<Guid, List<CallSite.RawTraceData>> loadedTraceData = new Dictionary<Guid, List<CallSite.RawTraceData>>();
