@@ -1557,9 +1557,15 @@ namespace Dynamo.Graph.Workspaces
         /// <param name="isTestMode"></param>
         /// <param name="verboseLogging"></param>
         /// <param name="manager"></param>
-        public static WorkspaceModel FromJson(string json, LibraryServices libraryServices,
-            EngineController engineController, DynamoScheduler scheduler, NodeFactory factory,
-            bool isTestMode, bool verboseLogging, CustomNodeManager manager)
+        public static WorkspaceModel FromJson(
+            string json, 
+            LibraryServices libraryServices,
+            EngineController engineController, 
+            DynamoScheduler scheduler, 
+            NodeFactory factory,
+            bool isTestMode, 
+            bool verboseLogging, 
+            CustomNodeManager manager)
         {
             var settings = new JsonSerializerSettings
             {
@@ -1571,12 +1577,13 @@ namespace Dynamo.Graph.Workspaces
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 TypeNameHandling = TypeNameHandling.Auto,
                 Formatting = Newtonsoft.Json.Formatting.Indented,
-                Converters = new List<JsonConverter>{
-                        new ConnectorConverter(),
-                        new WorkspaceReadConverter(engineController, scheduler, factory, isTestMode, verboseLogging),
-                        new NodeReadConverter(manager, libraryServices),
-                        new TypedParameterConverter()
-                    },
+                Converters = new List<JsonConverter>
+                {
+                    new ConnectorConverter(),
+                    new WorkspaceReadConverter(engineController, scheduler, factory, isTestMode, verboseLogging),
+                    new NodeReadConverter(manager, libraryServices),
+                    new TypedParameterConverter()
+                },
                 ReferenceResolverProvider = () => { return new IdReferenceResolver(); }
             };
 

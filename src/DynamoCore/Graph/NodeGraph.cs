@@ -29,9 +29,9 @@ namespace Dynamo.Graph
         public List<ConnectorModel> Connectors { get; private set; }
 
         /// <summary>
-        /// <see cref="NoteModel"/> loaded from xml.
+        /// <see cref="AnnotationModel"/> loaded from xml.
         /// </summary>
-        public List<NoteModel> Notes { get; private set; }
+        public List<AnnotationModel> Notes { get; private set; }
 
         /// <summary>
         /// <see cref="AnnotationModel"/> loaded from xml.
@@ -124,14 +124,14 @@ namespace Dynamo.Graph
         /// </summary>
         /// <param name="note"></param>
         /// <returns></returns>
-        public static NoteModel LoadNoteFromXml(XmlNode note)
+        public static AnnotationModel LoadNoteFromXml(XmlNode note)
         {
-            var instance = new NoteModel(0, 0, string.Empty, Guid.NewGuid());
+            var instance = new AnnotationModel(0, 0, string.Empty, Guid.NewGuid());
             instance.Deserialize(note as XmlElement, SaveContext.File);
             return instance;
         }
 
-        private static IEnumerable<NoteModel> LoadNotesFromXml(XmlDocument xmlDoc)
+        private static IEnumerable<AnnotationModel> LoadNotesFromXml(XmlDocument xmlDoc)
         {
             XmlNodeList nNodes = xmlDoc.GetElementsByTagName("Notes");
             if (nNodes.Count == 0)
@@ -140,18 +140,20 @@ namespace Dynamo.Graph
 
             return nNodesList != null
                 ? nNodesList.ChildNodes.Cast<XmlNode>().Select(LoadNoteFromXml)
-                : Enumerable.Empty<NoteModel>();
+                : Enumerable.Empty<AnnotationModel>();
         }
 
-        internal static AnnotationModel LoadAnnotationFromXml(XmlNode annotation, IEnumerable<NodeModel> nodes, IEnumerable<NoteModel> notes)
+        internal static AnnotationModel LoadAnnotationFromXml(XmlNode annotation, IEnumerable<NodeModel> nodes, IEnumerable<AnnotationModel> notes)
         {
             var instance = new AnnotationModel(nodes,notes);             
             instance.Deserialize(annotation as XmlElement, SaveContext.File);
             return instance;
         }
 
-        private static IEnumerable<AnnotationModel> LoadAnnotationsFromXml(XmlDocument xmlDoc, IEnumerable<NodeModel> nodes,
-                                                                                IEnumerable<NoteModel> notes )
+        private static IEnumerable<AnnotationModel> LoadAnnotationsFromXml(
+            XmlDocument xmlDoc, 
+            IEnumerable<NodeModel> nodes,
+            IEnumerable<AnnotationModel> notes)
         {
             XmlNodeList nNodes = xmlDoc.GetElementsByTagName("Annotations");
             if (nNodes.Count == 0)
@@ -226,7 +228,15 @@ namespace Dynamo.Graph
             var annotations = LoadAnnotationsFromXml(xmlDoc, nodes, notes).ToList();
             var presets = LoadPresetsFromXml(xmlDoc,nodes).ToList();
 
-            return new NodeGraph { Nodes = nodes, Connectors = connectors, Notes = notes, Annotations = annotations, Presets = presets, ElementResolver = elementResolver };
+            return new NodeGraph
+            {
+                Nodes = nodes,
+                Connectors = connectors,
+                Notes = notes,
+                Annotations = annotations,
+                Presets = presets,
+                ElementResolver = elementResolver
+            };
         }
 
     }

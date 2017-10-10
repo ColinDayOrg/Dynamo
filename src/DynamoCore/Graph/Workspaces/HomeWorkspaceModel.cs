@@ -189,9 +189,15 @@ namespace Dynamo.Graph.Workspaces
         /// <param name="verboseLogging">Indicates if detailed descriptions should be logged</param>
         /// <param name="isTestMode">Indicates if current code is running in tests</param>
         /// <param name="fileName">Name of file where the workspace is saved</param>
-        public HomeWorkspaceModel(EngineController engine, DynamoScheduler scheduler,
-            NodeFactory factory, bool verboseLogging, bool isTestMode, string fileName = "")
-            : this(engine,
+        public HomeWorkspaceModel(
+            EngineController engine, 
+            DynamoScheduler scheduler,
+            NodeFactory factory, 
+            bool verboseLogging, 
+            bool isTestMode, 
+            string fileName = "")
+            : this(
+                engine,
                 scheduler,
                 factory,
                 Enumerable.Empty<KeyValuePair<Guid, List<CallSite.RawTraceData>>>(),
@@ -204,19 +210,33 @@ namespace Dynamo.Graph.Workspaces
                 verboseLogging,
                 isTestMode) { }
 
-        public HomeWorkspaceModel(Guid guid, EngineController engine,
+        public HomeWorkspaceModel(
+            Guid guid, 
+            EngineController engine,
             DynamoScheduler scheduler,
             NodeFactory factory,
             IEnumerable<KeyValuePair<Guid, List<CallSite.RawTraceData>>> traceData,
             IEnumerable<NodeModel> nodes,
-            IEnumerable<NoteModel> notes,
+            IEnumerable<AnnotationModel> notes,
             IEnumerable<AnnotationModel> annotations,
             IEnumerable<PresetModel> presets,
             ElementResolver resolver,
             WorkspaceInfo info,
             bool verboseLogging,
-            bool isTestMode):this(engine, scheduler, factory, traceData, nodes, notes, 
-                annotations, presets, resolver, info, verboseLogging, isTestMode)
+            bool isTestMode)
+            : this(
+                engine, 
+                scheduler, 
+                factory, 
+                traceData, 
+                nodes, 
+                notes, 
+                annotations, 
+                presets, 
+                resolver, 
+                info, 
+                verboseLogging, 
+                isTestMode)
         { Guid = guid; }
 
         /// <summary>
@@ -242,7 +262,7 @@ namespace Dynamo.Graph.Workspaces
             NodeFactory factory,
             IEnumerable<KeyValuePair<Guid, List<CallSite.RawTraceData>>> traceData, 
             IEnumerable<NodeModel> nodes, 
-            IEnumerable<NoteModel> notes, 
+            IEnumerable<AnnotationModel> notes, 
             IEnumerable<AnnotationModel> annotations,
             IEnumerable<PresetModel> presets,
             ElementResolver resolver,
