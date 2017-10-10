@@ -54,7 +54,6 @@ namespace Dynamo.Graph.Annotations
         /// </summary>
         public bool loadFromXML { get; set; }
 
-        private double width;
         /// <summary>
         /// Returns width of the group
         /// </summary>
@@ -62,16 +61,15 @@ namespace Dynamo.Graph.Annotations
         {
             get
             {
-                return width;
+                return base.Width;
             }
             set
             {
-                width = value;
+                base.Width = value;
                 RaisePropertyChanged("Width");
             }
         }
 
-        private double height;
         /// <summary>
         /// Returns height of the group
         /// </summary>
@@ -79,11 +77,11 @@ namespace Dynamo.Graph.Annotations
         {
             get
             {
-                return height;
+                return base.Height;
             }
             set
             {
-                height = value;
+                base.Height = value;
                 RaisePropertyChanged("Height");
             }
         }
@@ -174,7 +172,7 @@ namespace Dynamo.Graph.Annotations
         /// Overriding the Rect from Modelbase
         /// This queries the actual RECT of the group. 
         /// This is required to make the group as ILocatable.
-        /// </summary>      
+        /// </summary>
         public override Rect2D Rect
         {
             get { return new Rect2D(this.X, this.Y, this.Width, this.Height); }
@@ -231,10 +229,10 @@ namespace Dynamo.Graph.Annotations
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnotationModel"/> class.
         /// </summary>
-        /// <param name="nodes">The nodes.</param>
-        /// <param name="notes">The notes.</param>
+        /// <param name="nodes">The nodes contained in the annotation.</param>
+        /// <param name="notes">The notes contained in the annotation.</param>
         public AnnotationModel(IEnumerable<NodeModel> nodes, IEnumerable<NoteModel> notes)
-        {                                 
+        {
             var nodeModels = nodes as NodeModel[] ?? nodes.ToArray();           
             var noteModels = notes as NoteModel[] ?? notes.ToArray();
             DeletedModelBases = new List<ModelBase>(); 
@@ -242,6 +240,24 @@ namespace Dynamo.Graph.Annotations
             UpdateBoundaryFromSelection();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AnnotationModel"/> class.
+        /// </summary>
+        /// <param name="x">X coordinate of the annotation.</param>
+        /// <param name="y">Y coordinate of the annotation.</param>
+        /// <param name="text">Text of the annotation.</param>
+        /// <param name="guid">Unique id of the annotation.</param>
+        public AnnotationModel(double x, double y, string text, Guid guid)
+        {
+            DeletedModelBases = new List<ModelBase>(); 
+            this.Nodes = new NodeModel[0];
+            UpdateBoundaryFromSelection();
+
+            X = x;
+            Y = y;
+            Text = text;
+            GUID = guid;
+        }
 
         private void model_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -350,7 +366,7 @@ namespace Dynamo.Graph.Annotations
             else
             {
                 this.Width = 0;
-                this.height = 0;               
+                this.Height = 0;               
             }
         }
 
@@ -431,8 +447,8 @@ namespace Dynamo.Graph.Annotations
             this.annotationText = helper.ReadString("annotationText", Resources.GroupDefaultText);
             this.X = helper.ReadDouble("left", DoubleValue);
             this.Y = helper.ReadDouble("top", DoubleValue);
-            this.width = helper.ReadDouble("width", DoubleValue);
-            this.height = helper.ReadDouble("height", DoubleValue);
+            this.Width = helper.ReadDouble("width", DoubleValue);
+            this.Height = helper.ReadDouble("height", DoubleValue);
             this.background = helper.ReadString("backgrouund", "");
             this.fontSize = helper.ReadDouble("fontSize", fontSize);
             this.textBlockHeight = helper.ReadDouble("TextblockHeight", DoubleValue);

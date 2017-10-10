@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Xml;
 using Dynamo.Utilities;
+using Dynamo.Graph.Annotations;
 
 namespace Dynamo.Graph.Notes
 {
     /// <summary>
     /// NoteModel represents notes in Dynamo.
     /// </summary>
-    public class NoteModel : ModelBase
+    public class NoteModel : AnnotationModel
     {
         private string text;
       
@@ -32,11 +33,9 @@ namespace Dynamo.Graph.Notes
         /// <param name="text">Text of note</param>
         /// <param name="guid">Unique id of note</param>
         public NoteModel(double x, double y, string text, Guid guid)
+            : base(x, y, text, guid)
         {
-            X = x;
-            Y = y;
             Text = text;
-            GUID = guid;
         }
 
         #region Command Framework Supporting Methods
