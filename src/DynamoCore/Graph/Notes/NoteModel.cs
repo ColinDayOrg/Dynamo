@@ -10,21 +10,6 @@ namespace Dynamo.Graph.Notes
     /// </summary>
     public class NoteModel : AnnotationModel
     {
-        private string text;
-      
-        /// <summary>
-        /// Returns the text inside the note.
-        /// </summary>
-        public string Text
-        {
-            get { return text; }
-            set
-            {
-                text = value;
-                RaisePropertyChanged("Text");
-            }
-        }
-
         /// <summary>
         /// Creates NoteModel.
         /// </summary>
@@ -35,7 +20,6 @@ namespace Dynamo.Graph.Notes
         public NoteModel(double x, double y, string text, Guid guid)
             : base(x, y, text, guid)
         {
-            Text = text;
         }
 
         #region Command Framework Supporting Methods
