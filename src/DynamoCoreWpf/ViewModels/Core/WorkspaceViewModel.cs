@@ -575,7 +575,7 @@ namespace Dynamo.ViewModels
                 _connectors.Remove(connector);
         }
 
-        private void Model_NoteAdded(NoteModel note)
+        private void Model_NoteAdded(AnnotationModel note)
         {
             var viewModel = new NoteViewModel(this, note);
             _notes.Add(viewModel);

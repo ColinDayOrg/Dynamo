@@ -2,7 +2,7 @@
 using System.Linq;
 using Dynamo.Graph;
 using Dynamo.Graph.Notes;
-using Dynamo.Models;
+using Dynamo.Graph.Annotations;
 using Dynamo.Selection;
 using Dynamo.Wpf.ViewModels.Core;
 using Dynamo.Configuration;
@@ -27,7 +27,7 @@ namespace Dynamo.ViewModels
 
         #region Properties
 
-        private NoteModel _model;
+        private AnnotationModel model;
 
         [JsonIgnore]
         public readonly WorkspaceViewModel WorkspaceViewModel;
@@ -35,12 +35,12 @@ namespace Dynamo.ViewModels
         internal static int StaticZIndex = Configurations.NodeStartZIndex;
 
         [JsonIgnore]
-        public NoteModel Model
+        public AnnotationModel Model
         {
-            get { return _model; }
+            get { return model; }
             set 
             { 
-                _model = value;
+                model = value;
                 RaisePropertyChanged("Model");
             }
         }
@@ -51,10 +51,10 @@ namespace Dynamo.ViewModels
         [JsonIgnore]
         public double Left
         {
-            get { return _model.X; }
+            get { return model.X; }
             set
             {
-                _model.X = value;
+                model.X = value;
                 RaisePropertyChanged("Left");
             }
         }
@@ -65,10 +65,10 @@ namespace Dynamo.ViewModels
         [JsonIgnore]
         public double Top
         {
-            get { return _model.Y; }
+            get { return model.Y; }
             set
             {
-                _model.Y = value;
+                model.Y = value;
                 RaisePropertyChanged("Top");
             }
         }
@@ -87,22 +87,22 @@ namespace Dynamo.ViewModels
         [JsonIgnore]
         public string Text
         {
-            get { return _model.Text; }
-            set { _model.Text = value; }
+            get { return model.Text; }
+            set { model.Text = value; }
         }
 
         [JsonIgnore]
         public bool IsSelected
         {
-            get { return _model.IsSelected; }
+            get { return model.IsSelected; }
         }
 
         #endregion
 
-        public NoteViewModel(WorkspaceViewModel workspaceViewModel, NoteModel model)
+        public NoteViewModel(WorkspaceViewModel workspaceViewModel, AnnotationModel model)
         {
             this.WorkspaceViewModel = workspaceViewModel;
-            _model = model;
+            this.model = model;
             model.PropertyChanged += note_PropertyChanged;
             DynamoSelection.Instance.Selection.CollectionChanged += SelectionOnCollectionChanged;
             ZIndex = ++StaticZIndex; // places the note on top of all nodes/notes
@@ -122,12 +122,12 @@ namespace Dynamo.ViewModels
 
         public void UpdateSizeFromView(double w, double h)
         {
-            this._model.SetSize(w,h);     
+            this.model.SetSize(w,h);     
         }
 
         private bool CanSelect(object parameter)
         {
-            if (!DynamoSelection.Instance.Selection.Contains(_model))
+            if (!DynamoSelection.Instance.Selection.Contains(model))
             {
                 return true;
             }

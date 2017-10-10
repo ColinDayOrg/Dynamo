@@ -281,8 +281,8 @@ namespace Dynamo.Graph.Workspaces
         /// <summary>
         ///     Event that is fired when a note is added to the workspace.
         /// </summary>
-        public event Action<NoteModel> NoteAdded;
-        protected virtual void OnNoteAdded(NoteModel note)
+        public event Action<AnnotationModel> NoteAdded;
+        protected virtual void OnNoteAdded(AnnotationModel note)
         {
             var handler = NoteAdded;
             if (handler != null) handler(note);
@@ -1088,7 +1088,7 @@ namespace Dynamo.Graph.Workspaces
             node.Dispose();
         }
 
-        private void AddNote(NoteModel note)
+        private void AddNote(AnnotationModel note)
         {
             lock (notes)
             {
@@ -1098,7 +1098,7 @@ namespace Dynamo.Graph.Workspaces
             OnNoteAdded(note);
         }
 
-        internal void AddNote(NoteModel note, bool centered)
+        internal void AddNote(AnnotationModel note, bool centered)
         {
             if (centered)
             {
@@ -1108,9 +1108,9 @@ namespace Dynamo.Graph.Workspaces
             AddNote(note);
         }
 
-        internal NoteModel AddNote(bool centerNote, double xPos, double yPos, string text, Guid id)
+        internal AnnotationModel AddNote(bool centerNote, double xPos, double yPos, string text, Guid id)
         {
-            var noteModel = new NoteModel(xPos, yPos, string.IsNullOrEmpty(text) ? Resources.NewNoteString : text, id);
+            var noteModel = new AnnotationModel(xPos, yPos, string.IsNullOrEmpty(text) ? Resources.NewNoteString : text, id);
 
             //if we have null parameters, the note is being added
             //from the menu, center the view on the note

@@ -204,12 +204,13 @@ namespace Dynamo.Models
 
         void CreateNoteImpl(CreateNoteCommand command)
         {
-            NoteModel noteModel = CurrentWorkspace.AddNote(
-                command.DefaultPosition,
-                command.X,
-                command.Y,
-                command.NoteText,
-                command.ModelGuid);
+            AnnotationModel noteModel = 
+                CurrentWorkspace.AddNote(
+                    command.DefaultPosition,
+                    command.X,
+                    command.Y,
+                    command.NoteText,
+                    command.ModelGuid);
 
             CurrentWorkspace.RecordCreatedModel(noteModel);
         }

@@ -84,7 +84,7 @@ namespace Dynamo.UI.Prompts
         {
             // Attempt get to the data-bound model (if there's any).
             var nodeModel = dataItem as NodeModel;
-            var noteModel = dataItem as NoteModel;
+            var noteModel = dataItem as AnnotationModel;
             var annotationModel = dataItem as AnnotationModel; 
             if (null == nodeModel && (null == noteModel) && (null == annotationModel))
             {
