@@ -1968,10 +1968,10 @@ namespace Dynamo.Models
             var annotations = ClipBoard.OfType<AnnotationModel>();
 
             // Create the new NoteModel's
-            var newNoteModels = new List<NoteModel>();
+            var newNoteModels = new List<AnnotationModel>();
             foreach (var note in notes)
             {
-                var noteModel = new NoteModel(note.X, note.Y, note.Text, Guid.NewGuid());
+                var noteModel = new AnnotationModel(note.X, note.Y, note.Text, Guid.NewGuid());
                 //Store the old note as Key and newnote as value.
                 modelLookup.Add(note.GUID, noteModel);
                 newNoteModels.Add(noteModel);

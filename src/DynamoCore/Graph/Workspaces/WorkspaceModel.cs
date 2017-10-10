@@ -1671,7 +1671,7 @@ namespace Dynamo.Graph.Workspaces
                 var guidValue = IdToGuidConverter(noteViewInfo.Id);
 
                 // TODO, QNTM-1099: Figure out if ZIndex needs to be set here as well
-                var noteModel = new NoteModel(noteViewInfo.X, noteViewInfo.Y, noteViewInfo.Text, guidValue);
+                var noteModel = new AnnotationModel(noteViewInfo.X, noteViewInfo.Y, noteViewInfo.Text, guidValue);
                 this.AddNote(noteModel);
             }
         }
@@ -1693,11 +1693,12 @@ namespace Dynamo.Graph.Workspaces
                 var annotationGuidValue = IdToGuidConverter(annotationViewInfo.Id);
                 var text = annotationViewInfo.Title;
 
-                var noteModel = new NoteModel(
-                    annotationViewInfo.Left, 
-                    annotationViewInfo.Top, 
-                    text, 
-                    annotationGuidValue);
+                var noteModel = 
+                    new AnnotationModel(
+                        annotationViewInfo.Left, 
+                        annotationViewInfo.Top, 
+                        text, 
+                        annotationGuidValue);
                 this.AddNote(noteModel);
             }
         }
