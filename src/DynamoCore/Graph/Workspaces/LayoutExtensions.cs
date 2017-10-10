@@ -131,7 +131,7 @@ namespace Dynamo.Graph.Workspaces
                 }
             }
 
-            foreach (NoteModel note in workspace.Notes)
+            foreach (AnnotationModel note in workspace.Notes)
             {
                 AnnotationModel group = workspace.Annotations.Where(
                     g => g.Nodes.Contains(note)).ToList().FirstOrDefault();
@@ -386,7 +386,7 @@ namespace Dynamo.Graph.Workspaces
                         node.ReportPosition();
                     }
 
-                    foreach (NoteModel note in n.LinkedNotes)
+                    foreach (AnnotationModel note in n.LinkedNotes)
                     {
                         if (note.IsSelected || DynamoSelection.Instance.Selection.Count == 0)
                         {
@@ -415,7 +415,7 @@ namespace Dynamo.Graph.Workspaces
                     workspace.HasUnsavedChanges = true;
 
                     double noteOffset = -n.NotesHeight;
-                    foreach (NoteModel note in n.LinkedNotes)
+                    foreach (AnnotationModel note in n.LinkedNotes)
                     {
                         if (note.IsSelected || DynamoSelection.Instance.Selection.Count == 0)
                         {

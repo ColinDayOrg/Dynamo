@@ -202,7 +202,7 @@ namespace Dynamo.Graph.Workspaces
                 factory,
                 Enumerable.Empty<KeyValuePair<Guid, List<CallSite.RawTraceData>>>(),
                 Enumerable.Empty<NodeModel>(),
-                Enumerable.Empty<NoteModel>(),
+                Enumerable.Empty<AnnotationModel>(),
                 Enumerable.Empty<AnnotationModel>(),
                 Enumerable.Empty<PresetModel>(),
                 new ElementResolver(),
@@ -237,7 +237,9 @@ namespace Dynamo.Graph.Workspaces
                 info, 
                 verboseLogging, 
                 isTestMode)
-        { Guid = guid; }
+        {
+            Guid = guid;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeWorkspaceModel"/> class
