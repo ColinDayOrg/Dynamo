@@ -581,7 +581,7 @@ namespace Dynamo.ViewModels
             _notes.Add(viewModel);
         }
 
-        private void Model_NoteRemoved(NoteModel note)
+        private void Model_NoteRemoved(AnnotationModel note)
         {
             _notes.Remove(_notes.First(x => x.Model == note));
         }

@@ -799,7 +799,7 @@ namespace Dynamo.Core
         /// <param name="args"></param>
         internal CustomNodeWorkspaceModel Collapse(
             IEnumerable<NodeModel> selectedNodes,
-            IEnumerable<NoteModel> selectedNotes,
+            IEnumerable<AnnotationModel> selectedNotes,
             WorkspaceModel currentWorkspace,
             bool isTestMode,
             FunctionNamePromptEventArgs args)
@@ -910,7 +910,7 @@ namespace Dynamo.Core
                 #region Transfer nodes and connectors to new workspace
 
                 var newNodes = new List<NodeModel>();
-                var newNotes = new List<NoteModel>();
+                var newNotes = new List<AnnotationModel>();
                 var newAnnotations = new List<AnnotationModel>();
             
                 // Step 4: move all nodes and notes to new workspace remove from old

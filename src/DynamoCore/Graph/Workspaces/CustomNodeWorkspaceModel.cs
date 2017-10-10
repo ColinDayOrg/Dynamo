@@ -54,7 +54,7 @@ namespace Dynamo.Graph.Workspaces
         public CustomNodeWorkspaceModel(WorkspaceInfo info, NodeFactory factory)
             : this(factory,
                 Enumerable.Empty<NodeModel>(),
-                Enumerable.Empty<NoteModel>(),
+                Enumerable.Empty<AnnotationModel>(),
                 Enumerable.Empty<AnnotationModel>(),
                 Enumerable.Empty<PresetModel>(),
                 new ElementResolver(),
@@ -75,7 +75,7 @@ namespace Dynamo.Graph.Workspaces
         public CustomNodeWorkspaceModel( 
             NodeFactory factory,
             IEnumerable<NodeModel> nodes, 
-            IEnumerable<NoteModel> notes, 
+            IEnumerable<AnnotationModel> notes, 
             IEnumerable<AnnotationModel> annotations,
             IEnumerable<PresetModel> presets,
             ElementResolver elementResolver, 

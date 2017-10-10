@@ -231,10 +231,10 @@ namespace Dynamo.Graph.Annotations
         /// </summary>
         /// <param name="nodes">The nodes contained in the annotation.</param>
         /// <param name="notes">The notes contained in the annotation.</param>
-        public AnnotationModel(IEnumerable<NodeModel> nodes, IEnumerable<NoteModel> notes)
+        public AnnotationModel(IEnumerable<NodeModel> nodes, IEnumerable<AnnotationModel> notes)
         {
             var nodeModels = nodes as NodeModel[] ?? nodes.ToArray();           
-            var noteModels = notes as NoteModel[] ?? notes.ToArray();
+            var noteModels = notes as AnnotationModel[] ?? notes.ToArray();
             DeletedModelBases = new List<ModelBase>(); 
             this.Nodes = nodeModels.Concat(noteModels.Cast<ModelBase>()).ToList();      
             UpdateBoundaryFromSelection();

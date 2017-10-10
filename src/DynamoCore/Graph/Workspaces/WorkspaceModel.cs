@@ -167,7 +167,7 @@ namespace Dynamo.Graph.Workspaces
         private bool hasUnsavedChanges;
         private bool isReadOnly;
         private readonly List<NodeModel> nodes;
-        private readonly List<NoteModel> notes;
+        private readonly List<AnnotationModel> notes;
         private readonly List<AnnotationModel> annotations;
         internal readonly List<PresetModel> presets;
         private readonly UndoRedoRecorder undoRecorder;
@@ -291,8 +291,8 @@ namespace Dynamo.Graph.Workspaces
         /// <summary>
         ///     Event that is fired when a note is removed from the workspace.
         /// </summary>
-        public event Action<NoteModel> NoteRemoved;
-        protected virtual void OnNoteRemoved(NoteModel note)
+        public event Action<AnnotationModel> NoteRemoved;
+        protected virtual void OnNoteRemoved(AnnotationModel note)
         {
             var handler = NoteRemoved;
             if (handler != null) handler(note);
@@ -600,11 +600,11 @@ namespace Dynamo.Graph.Workspaces
         /// <summary>
         ///     Returns the notes <see cref="NoteModel"/> collection.
         /// </summary>
-        public IEnumerable<NoteModel> Notes
+        public IEnumerable<AnnotationModel> Notes
         {
             get
             {
-                IEnumerable<NoteModel> notesClone;
+                IEnumerable<AnnotationModel> notesClone;
                 lock (notes)
                 {
                     notesClone = notes.ToList();
@@ -799,7 +799,7 @@ namespace Dynamo.Graph.Workspaces
 
         protected WorkspaceModel(
             IEnumerable<NodeModel> nodes,
-            IEnumerable<NoteModel> notes,
+            IEnumerable<AnnotationModel> notes,
             IEnumerable<AnnotationModel> annotations,
             WorkspaceInfo info,
             NodeFactory factory,
@@ -809,8 +809,7 @@ namespace Dynamo.Graph.Workspaces
             guid = Guid.NewGuid();
 
             this.nodes = new List<NodeModel>(nodes);
-            this.notes = new List<NoteModel>(notes);
-
+            this.notes = new List<AnnotationModel>(notes);
             this.annotations = new List<AnnotationModel>(annotations);
 
             // Set workspace info from WorkspaceInfo object
@@ -1130,7 +1129,7 @@ namespace Dynamo.Graph.Workspaces
             OnNotesCleared();
         }
 
-        internal void RemoveNote(NoteModel note)
+        internal void RemoveNote(AnnotationModel note)
         {
             lock (notes)
             {
@@ -1235,7 +1234,7 @@ namespace Dynamo.Graph.Workspaces
         /// <param name="selectNodes">The select nodes.</param>
         /// <param name="selectNotes">The select notes.</param>
         /// <returns>true if the models are already in the same group</returns>
-        private bool CheckIfModelExistsInSameGroup(IEnumerable<NodeModel> selectNodes, IEnumerable<NoteModel> selectNotes)
+        private bool CheckIfModelExistsInSameGroup(IEnumerable<NodeModel> selectNodes, IEnumerable<AnnotationModel> selectNotes)
         {
             var selectedModels = selectNodes.Concat(selectNotes.Cast<ModelBase>()).ToList();
             bool nodesInSameGroup = false;
@@ -1730,7 +1729,7 @@ namespace Dynamo.Graph.Workspaces
                 }
 
                 // Create a collection of notes in the given annotation
-                var notes = new List<NoteModel>();
+                var notes = new List<AnnotationModel>();
                 foreach (string noteId in annotationViewInfo.Nodes)
                 {
                     var guidValue = IdToGuidConverter(noteId);
