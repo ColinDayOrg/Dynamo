@@ -598,7 +598,7 @@ namespace Dynamo.Graph.Workspaces
         }
 
         /// <summary>
-        ///     Returns the notes <see cref="NoteModel"/> collection.
+        ///     Returns the notes <see cref="AnnotationModel"/> collection.
         /// </summary>
         public IEnumerable<AnnotationModel> Notes
         {
