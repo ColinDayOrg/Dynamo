@@ -50,7 +50,7 @@ namespace Dynamo.Wpf.ViewModels.Core.Converters
                 serializer.Serialize(writer, annotation);
             foreach (var note in workspaceView.Notes)
             {
-                AnnotationModel convertedNote = new AnnotationModel(new NodeModel[0], new NoteModel[0]);
+                AnnotationModel convertedNote = new AnnotationModel(new NodeModel[0], new AnnotationModel[0]);
                 convertedNote.GUID = note.Model.GUID;
                 convertedNote.X = note.Left;
                 convertedNote.Y = note.Top;
