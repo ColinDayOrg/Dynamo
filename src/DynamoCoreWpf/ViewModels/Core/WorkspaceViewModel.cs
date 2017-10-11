@@ -464,7 +464,7 @@ namespace Dynamo.ViewModels
             // sync collections
 
             foreach (NodeModel node in Model.Nodes) Model_NodeAdded(node);
-            foreach (NoteModel note in Model.Notes) Model_NoteAdded(note);
+            foreach (AnnotationModel note in Model.Notes) Model_NoteAdded(note);
             foreach (AnnotationModel annotation in Model.Annotations) Model_AnnotationAdded(annotation);
             foreach (ConnectorModel connector in Model.Connectors) Connectors_ConnectorAdded(connector);
 
@@ -1271,7 +1271,7 @@ namespace Dynamo.ViewModels
                 return;
 
             var selectedNodes = DynamoSelection.Instance.Selection.OfType<NodeModel>();
-            var selectedNotes = DynamoSelection.Instance.Selection.OfType<NoteModel>();
+            var selectedNotes = DynamoSelection.Instance.Selection.OfType<AnnotationModel>();
 
             DynamoViewModel.Model.AddCustomNodeWorkspace(
                 DynamoViewModel.Model.CustomNodeManager.Collapse(selectedNodes,
