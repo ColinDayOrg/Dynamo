@@ -737,7 +737,9 @@ namespace Dynamo.Views
             DynamoSelection.Instance.ClearSelectionDisabled = true;
             var selection = DynamoSelection.Instance.Selection;
             var nodes = selection.OfType<NodeModel>();
-            var notes = selection.OfType<NoteModel>();
+
+            // TODO: May need to differentiate between notes and groups here
+            var notes = selection.OfType<AnnotationModel>();
             var annotations = selection.OfType<AnnotationModel>();
 
             var connectors = nodes.SelectMany(n =>
