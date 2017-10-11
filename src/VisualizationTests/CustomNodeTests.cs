@@ -5,6 +5,7 @@ using System.Windows;
 using Dynamo;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Nodes.CustomNodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
@@ -63,7 +64,7 @@ namespace WpfVisualizationTests
             List<NodeModel> selectionSet = new List<NodeModel>() { node };
             var customWorkspace = model.CustomNodeManager.Collapse(
                 selectionSet.AsEnumerable(),
-                Enumerable.Empty<Dynamo.Graph.Notes.NoteModel>(),
+                Enumerable.Empty<AnnotationModel>(),
                 model.CurrentWorkspace,
                 true,
                 new FunctionNamePromptEventArgs

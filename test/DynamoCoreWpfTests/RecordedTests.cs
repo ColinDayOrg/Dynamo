@@ -23,7 +23,7 @@ using Dynamo.Graph;
 using Dynamo.Graph.Connectors;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.CustomNodes;
-using Dynamo.Graph.Notes;
+using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Workspaces;
 using TestServices;
 
@@ -3960,7 +3960,7 @@ namespace DynamoCoreWpfTests
             Assert.AreEqual(2, workspace.Nodes.Count());
 
             var number = GetNode("a9762506-2ab6-4b50-8166-138de5b0c704") as DoubleInput;
-            var note = GetNode("21c66403-d102-42bd-97ae-9e7b9c0b6e7d") as NoteModel;
+            var note = GetNode("21c66403-d102-42bd-97ae-9e7b9c0b6e7d") as AnnotationModel;
 
             Assert.IsNotNull(number);
             Assert.IsNotNull(note);
