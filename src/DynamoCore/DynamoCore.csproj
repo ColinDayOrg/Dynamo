@@ -253,7 +253,6 @@ limitations under the License.
     <Compile Include="Updates\BinaryVersion.cs" />
     <Compile Include="Updates\UpdateManager.cs" />
     <Compile Include="Graph\ModelBase.cs" />
-    <Compile Include="Graph\Notes\NoteModel.cs" />
     <Compile Include="Graph\Nodes\PortModel.cs" />
     <Compile Include="Configuration\Configurations.cs" />
     <Compile Include="Migration\MigrationReport.cs" />

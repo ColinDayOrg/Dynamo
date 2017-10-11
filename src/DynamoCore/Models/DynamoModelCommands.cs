@@ -12,7 +12,6 @@ using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Connectors;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
-using Dynamo.Graph.Notes;
 using Dynamo.Graph.Workspaces;
 
 namespace Dynamo.Models

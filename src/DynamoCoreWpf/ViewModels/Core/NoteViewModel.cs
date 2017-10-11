@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Dynamo.Graph;
-using Dynamo.Graph.Notes;
 using Dynamo.Graph.Annotations;
 using Dynamo.Selection;
 using Dynamo.Wpf.ViewModels.Core;

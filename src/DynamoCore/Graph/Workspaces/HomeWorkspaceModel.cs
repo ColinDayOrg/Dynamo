@@ -3,7 +3,6 @@ using Dynamo.Engine;
 using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.NodeLoaders;
-using Dynamo.Graph.Notes;
 using Dynamo.Graph.Presets;
 using Dynamo.Models;
 using Dynamo.Scheduler;

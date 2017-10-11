@@ -13,7 +13,6 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.CustomNodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
-using Dynamo.Graph.Notes;
 using Dynamo.Graph.Annotations;
 using Newtonsoft.Json.Linq;
 
