@@ -1,7 +1,7 @@
 using Dynamo.Configuration;
 using Dynamo.Core;
 using Dynamo.Graph.Nodes;
-using Dynamo.Graph.Notes;
+using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Presets;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
@@ -177,7 +177,9 @@ namespace Dynamo.Controls
         private void OnRequestPaste()
         {
             var clipBoard = dynamoViewModel.Model.ClipBoard;
-            var locatableModels = clipBoard.Where(item => item is NoteModel || item is NodeModel);
+
+            // TODO: May need to check if the annotation is a note or not
+            var locatableModels = clipBoard.Where(item => item is AnnotationModel || item is NodeModel);
 
             var modelBounds = locatableModels.Select(lm =>
                 new Rect {X = lm.X, Y = lm.Y, Height = lm.Height, Width = lm.Width});
