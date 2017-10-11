@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using Dynamo.Graph;
-using Dynamo.Graph.Notes;
+using Dynamo.Graph.Annotations;
 using Dynamo.Graph.Workspaces;
-using Dynamo.Models;
 
 namespace Dynamo.ViewModels
 {
     public class NoteEventArgs : EventArgs
     {
-        public NoteModel Note { get; set; }
+        public AnnotationModel Note { get; set; }
         public Dictionary<string, object> Data { get; set; }
-        public NoteEventArgs(NoteModel n, Dictionary<string, object> d)
+        public NoteEventArgs(AnnotationModel n, Dictionary<string, object> d)
         {
             Note = n;
             Data = d;
