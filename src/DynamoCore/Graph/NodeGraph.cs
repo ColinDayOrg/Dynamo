@@ -120,7 +120,7 @@ namespace Dynamo.Graph
         }
 
         /// <summary>
-        ///     Creates and initializes a NoteModel from its Xml representation.
+        ///     Creates and initializes an AnnotationModel from its Xml representation.
         /// </summary>
         /// <param name="note"></param>
         /// <returns></returns>

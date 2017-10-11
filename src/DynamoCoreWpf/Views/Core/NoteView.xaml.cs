@@ -39,12 +39,11 @@ namespace Dynamo.Nodes
             ViewModel = this.DataContext as NoteViewModel;
             ViewModel.RequestsSelection += OnViewModelRequestsSelection;
 
-            // NoteModel has default dimension of 100x100 which will not be ideal in 
-            // most cases. Here we update the model according to the size of the view.
+            // AnnotationModel for notes has default dimension of 100x100 which will not be 
+            // ideal in most cases. Here we update the model according to the size of the view.
             // At this point the view (a TextBlock) would have already been updated 
             // with the bound data, so its size is up-to-date, here we make a call to 
             // update the corresponding model.
-            // 
             ViewModel.UpdateSizeFromView(noteText.ActualWidth, noteText.ActualHeight);
         }
 

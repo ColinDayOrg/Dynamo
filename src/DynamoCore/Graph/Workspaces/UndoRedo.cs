@@ -190,11 +190,11 @@ namespace Dynamo.Graph.Workspaces
                 foreach (var model in models)
                 {
                     // TODO: Determine what to do with notes here...
-                    //if (model is NoteModel)
+                    //if (model is AnnotationModel)
                     //{
                     //    // Take a snapshot of the note before it goes away.
                     //    undoRecorder.RecordDeletionForUndo(model);
-                    //    RemoveNote(model as NoteModel);
+                    //    RemoveNote(model as AnnotationModel);
                     //}
                     //else 
                     if (model is AnnotationModel)
@@ -305,9 +305,9 @@ namespace Dynamo.Graph.Workspaces
             ModelBase model = GetModelForElement(modelData);
 
             // TODO: Determine what to do with notes here...
-            //if (model is NoteModel)
+            //if (model is AnnotationModel)
             //{
-            //    var note = model as NoteModel;
+            //    var note = model as AnnotationModel;
             //    RemoveNote(note);
             //    note.Dispose();
             //}
@@ -404,21 +404,24 @@ namespace Dynamo.Graph.Workspaces
                     OnConnectorAdded(connector); // Update view-model and view.
                 }
             }
-            else if (typeName.Contains("NoteModel"))
-            {
-                var noteModel = NodeGraph.LoadNoteFromXml(modelData);
-                AddNote(noteModel);
 
-                //check whether this note belongs to a group
-                foreach (var annotation in Annotations)
-                {
-                    //this note "was" in a group
-                    if (annotation.DeletedModelBases.Any(m => m.GUID == noteModel.GUID))
-                    {
-                        annotation.AddToSelectedModels(noteModel);
-                    }
-                }
-            }
+            // TODO: Deal with notes here if required
+            //else if (typeName.Contains("AnnotationModel"))
+            //{
+            //    var noteModel = NodeGraph.LoadNoteFromXml(modelData);
+            //    AddNote(noteModel);
+
+            //    //check whether this note belongs to a group
+            //    foreach (var annotation in Annotations)
+            //    {
+            //        //this note "was" in a group
+            //        if (annotation.DeletedModelBases.Any(m => m.GUID == noteModel.GUID))
+            //        {
+            //            annotation.AddToSelectedModels(noteModel);
+            //        }
+            //    }
+            //}
+
             else if (typeName.Contains("AnnotationModel"))
             {
                 var selectedNodes = this.Nodes == null ? null : this.Nodes.Where(s => s.IsSelected);

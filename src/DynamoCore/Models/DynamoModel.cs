@@ -1967,12 +1967,12 @@ namespace Dynamo.Models
             var notes = ClipBoard.OfType<AnnotationModel>();
             var annotations = ClipBoard.OfType<AnnotationModel>();
 
-            // Create the new NoteModel's
+            // Create the new AnnotationModels for notes
             var newNoteModels = new List<AnnotationModel>();
             foreach (var note in notes)
             {
                 var noteModel = new AnnotationModel(note.X, note.Y, note.Text, Guid.NewGuid());
-                //Store the old note as Key and newnote as value.
+                // Store the old note as Key and new note as value.
                 modelLookup.Add(note.GUID, noteModel);
                 newNoteModels.Add(noteModel);
             }
@@ -2034,7 +2034,7 @@ namespace Dynamo.Models
             // TODO: is this required?
             OnRequestLayoutUpdate(this, EventArgs.Empty);
 
-            // Add the new NoteModel's to the Workspace
+            // Add the new AnnotationModels for notes to the Workspace
             foreach (var newNote in newNoteModels)
             {
                 CurrentWorkspace.AddNote(newNote, false);

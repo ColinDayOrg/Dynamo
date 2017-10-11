@@ -290,7 +290,7 @@ namespace Dynamo.Graph.Workspaces
 
             // notes
             //TODO: Check this when implementing ReadJSON in ViewModel.
-            //var notes = obj["Notes"].ToObject<IEnumerable<NoteModel>>(serializer);
+            //var notes = obj["Notes"].ToObject<IEnumerable<AnnotationModel>>(serializer);
             //if (notes.Any())
             //{
             //    foreach(var n in notes)
