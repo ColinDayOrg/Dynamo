@@ -1923,12 +1923,12 @@ namespace Dynamo.Models
         }
 
         /// <summary>
-        ///     Paste ISelectable objects from the clipboard to the workspace
+        /// Paste ISelectable objects from the clipboard to the workspace
         /// so that the nodes appear in their original location with a slight offset
         /// </summary>
         public void Paste()
         {
-            var locatableModels = ClipBoard.Where(model => model is NoteModel || model is NodeModel);
+            var locatableModels = ClipBoard.Where(model => model is AnnotationModel || model is NodeModel);
             var x = locatableModels.Min(m => m.X);
             var y = locatableModels.Min(m => m.Y);
             var targetPoint = new Point2D(x, y);
@@ -1964,7 +1964,7 @@ namespace Dynamo.Models
 
             var nodes = ClipBoard.OfType<NodeModel>();
             var connectors = ClipBoard.OfType<ConnectorModel>();
-            var notes = ClipBoard.OfType<NoteModel>();
+            var notes = ClipBoard.OfType<AnnotationModel>();
             var annotations = ClipBoard.OfType<AnnotationModel>();
 
             // Create the new NoteModel's
@@ -2071,7 +2071,7 @@ namespace Dynamo.Models
             foreach (var annotation in annotations)
             {
                 var annotationNodeModel = new List<NodeModel>();
-                var annotationNoteModel = new List<NoteModel>();
+                var annotationNoteModel = new List<AnnotationModel>();
                 // some models can be deleted after copying them,
                 // so they need to be in pasted annotation as well
                 var modelsToRestore = annotation.DeletedModelBases.Intersect(ClipBoard);
@@ -2085,9 +2085,9 @@ namespace Dynamo.Models
                     {
                         annotationNodeModel.Add(mbase as NodeModel);
                     }
-                    if (mbase is NoteModel)
+                    if (mbase is AnnotationModel)
                     {
-                        annotationNoteModel.Add(mbase as NoteModel);
+                        annotationNoteModel.Add(mbase as AnnotationModel);
                     }
                 }
 
